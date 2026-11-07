@@ -166,6 +166,31 @@ class HttpTests(unittest.TestCase):
         conn.close()
         return result
 
+    def test_share_link_follows_network_changes_without_losing_peers(self):
+        self.state.add_peer("http://192.168.1.163:8765")
+
+        def addresses():
+            conn = http.client.HTTPConnection("127.0.0.1", self.port, timeout=3)
+            conn.request("GET", "/api/state")
+            response = conn.getresponse()
+            self.assertEqual(response.status, 200)
+            result = json.loads(response.read())
+            conn.close()
+            return result["urls"]
+
+        with patch("turtlehero_dashboard.time") as clock, \
+                patch("turtlehero_dashboard.lan_urls") as discover:
+            clock.monotonic.return_value = 100
+            discover.return_value = [f"http://10.151.159.250:{self.port}"]
+            self.assertEqual(addresses(), discover.return_value)
+            clock.monotonic.return_value = 111
+            discover.return_value = [f"http://192.168.1.254:{self.port}"]
+            self.assertEqual(addresses(), discover.return_value)
+            clock.monotonic.return_value = 122
+            discover.return_value = []
+            self.assertEqual(addresses(), [])
+        self.assertIn("http://192.168.1.163:8765", self.state.peers)
+
     def test_peer_key_and_browser_origin_are_enforced(self):
         packet = station("remote").snapshot(images=True)
         self.assertEqual(self.post("/api/peer/sync", packet)[0], 403)

@@ -15,6 +15,7 @@ import socket
 import sys
 import subprocess
 import threading
+import time
 from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parent
@@ -57,6 +58,20 @@ def lan_urls(port):
 
 
 def handler_for(state, key=""):
+    address_lock = threading.Lock()
+    address_checked_at = float("-inf")
+
+    def refresh_addresses(port):
+        nonlocal address_checked_at
+        # A laptop can move between Wi-Fi networks while the server stays open.
+        # Refresh the share link without restarting capture or discarding peers.
+        with address_lock:
+            if time.monotonic() - address_checked_at >= 10:
+                current = lan_urls(port)
+                with state.lock:
+                    state.urls = current
+                address_checked_at = time.monotonic()
+
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_):
             pass
@@ -83,6 +98,7 @@ def handler_for(state, key=""):
         def do_GET(self):
             parsed = urlsplit(self.path)
             if parsed.path == "/api/state":
+                refresh_addresses(self.server.server_port)
                 packet = state.snapshot()
                 with state.lock:
                     packet.update(local_id=state.node_id, urls=state.urls,
