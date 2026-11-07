@@ -1,0 +1,2 @@
+# Use with the existing pinned .venv training environment.
+scipy==1.17.1

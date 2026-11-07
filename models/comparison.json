@@ -1,0 +1,104 @@
+{
+  "baseline": {
+    "coco": {
+      "AP": 0.6722275516878751,
+      "AP50": 0.8699784409723502,
+      "AP75": 0.7579172976673217,
+      "AP_small": 0.0,
+      "AP_medium": 0.4567956795679568,
+      "AP_large": 0.7078396966728583,
+      "AR1": 0.6666666666666666,
+      "AR10": 0.7490196078431371,
+      "AR100": 0.7745098039215685,
+      "AR_small": 0.0,
+      "AR_medium": 0.7,
+      "AR_large": 0.7957446808510639,
+      "object_counts_original_pixel_area": {
+        "large": 47,
+        "medium": 3,
+        "small": 1
+      },
+      "size_definition": "COCO areas in original-image pixels; small <32^2, medium 32^2..96^2, large >96^2"
+    },
+    "fixed_threshold": {
+      "tp": 44,
+      "fp": 9,
+      "fn": 7,
+      "precision": 0.8301886792452831,
+      "recall": 0.8627450980392157
+    },
+    "at_nine_false_boxes": {
+      "threshold": 0.6331667900085449,
+      "tp": 44,
+      "fp": 9,
+      "fn": 7,
+      "precision": 0.8301886792452831,
+      "recall": 0.8627450980392157
+    },
+    "selected": {
+      "confidence": 0.6331667900085449,
+      "precision": 0.8301886792452831,
+      "recall": 0.8627450980392157,
+      "F1": 0.8461538461538461,
+      "F2": 0.8560311284046692,
+      "tp": 44,
+      "fp": 9,
+      "fn": 7
+    },
+    "usb_alert_frames": 42,
+    "usb_total_frames": 117
+  },
+  "adapted": {
+    "coco": {
+      "AP": 0.6766465600095741,
+      "AP50": 0.8667016433496837,
+      "AP75": 0.7514289661206787,
+      "AP_small": 0.0,
+      "AP_medium": 0.345049504950495,
+      "AP_large": 0.71559493338034,
+      "AR1": 0.6784313725490196,
+      "AR10": 0.7725490196078432,
+      "AR100": 0.7843137254901961,
+      "AR_small": 0.0,
+      "AR_medium": 0.7333333333333332,
+      "AR_large": 0.8042553191489361,
+      "object_counts_original_pixel_area": {
+        "large": 47,
+        "medium": 3,
+        "small": 1
+      },
+      "size_definition": "COCO areas in original-image pixels; small <32^2, medium 32^2..96^2, large >96^2"
+    },
+    "fixed_threshold": {
+      "tp": 42,
+      "fp": 5,
+      "fn": 9,
+      "precision": 0.8936170212765957,
+      "recall": 0.8235294117647058
+    },
+    "at_nine_false_boxes": {
+      "threshold": 0.5763524174690247,
+      "tp": 43,
+      "fp": 6,
+      "fn": 8,
+      "precision": 0.8775510204081632,
+      "recall": 0.8431372549019608
+    },
+    "selected": {
+      "confidence": 0.5763524174690247,
+      "precision": 0.8775510204081632,
+      "recall": 0.8431372549019608,
+      "F1": 0.86,
+      "F2": 0.849802371541502,
+      "tp": 43,
+      "fp": 6,
+      "fn": 8
+    },
+    "usb_alert_frames": 8,
+    "usb_total_frames": 117
+  },
+  "recommend_default": false,
+  "fixed_confidence": 0.6331660747528076,
+  "usb_role": "Training encounter diagnostic only; no held-out USB site",
+  "caveat": "Same 50-photo model-selection set; no claim of independent field accuracy or false alerts per hour"
+}

@@ -1,0 +1,3 @@
+# Install into existing .venv with --no-deps; matching torch/numpy/Pillow already pinned there.
+# COLMAP reconstruction is not used and pycolmap is not required for this RGB-D initialization path.
+metalsplat @ git+https://github.com/tchauffi/metalsplat.git@84e8c3a433f71c107e9387d3f72a765436c11f6e

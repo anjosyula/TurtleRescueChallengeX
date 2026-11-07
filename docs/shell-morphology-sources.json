@@ -1,0 +1,38 @@
+{
+  "reviewed_date": "2026-10-26",
+  "primary": {
+    "title": "Geometry and self-righting of turtles",
+    "authors": ["Gabor Domokos", "Peter L. Varkonyi"],
+    "doi": "10.1098/rspb.2007.1188",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2562404/",
+    "author_text": "https://www.researchgate.net/publication/5905508_Geometry_and_self-righting_of_turtles",
+    "sample": "30 individuals, 17 species; not a population distribution",
+    "parameters": {
+      "R": "Complete transverse shell height divided by width; normalized dimensions 2R by 2",
+      "p": "Carapace cross-section shape",
+      "k": "Carapace-plastron transition rounding"
+    },
+    "reported_regressions": {"p_of_R": "2.59*R - 1.51", "k_of_R": "0.90*R - 1.01"},
+    "strategy_regimes_approximate": {"flat_R": "below 0.6", "intermediate_R": "0.6 to 0.8", "tall_R": "above 0.8"},
+    "limitations": "Idealized geometry; strongest agreement for highly domed terrestrial shells. Strategy regimes are not species-specific confidence intervals. Shape is not sufficient to model animal mass distribution, limbs, terrain or self-righting dynamics."
+  },
+  "explanation": {
+    "title": "The Living Gomboc",
+    "author": "Adam Summers",
+    "url": "https://www.naturalhistorymag.com/biomechanics/10309/the-living-g-mb-c",
+    "role": "Qualitative background; does not supply a texture dataset or per-species parameter distribution"
+  },
+  "application": {
+    "status": "Documented research prior; not yet applied to existing renders or training",
+    "length_ratio_mapping": "H/L = R*(W/L), only when H and W use the paper's complete-shell definition",
+    "scan_caveat": "Current canonical scan mesh Z span is not verified as complete shell/plastron height; do not silently equate it to R",
+    "next_model": "Fit species/individual-conditioned transverse curvature and rim parameters from reviewed front/side views; sample correlated plausible shapes, keeping actual scan/photo evidence dominant",
+    "avoid": "Do not force all turtles into a Gomboc, equate p or k to existing taper, or infer missing shell texture from these equations",
+    "texture_source": "Reviewed, appropriately authorized real turtle photos; keep source encounter groups intact"
+  },
+  "additional_primary_dataset": {
+    "title": "Shell geometry and habitat determination in extinct and extant turtles",
+    "url": "https://datadryad.org/dataset/doi%3A10.5061/dryad.8705",
+    "status": "Identified only; 321.89 MB data archive not downloaded; inspect terms and species coverage before use"
+  }
+}

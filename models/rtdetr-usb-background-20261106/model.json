@@ -1,0 +1,11 @@
+{
+  "architecture": "Ultralytics RT-DETR-L",
+  "class_names": [
+    "turtle"
+  ],
+  "confidence": 0.5763524174690247,
+  "sha256": "37e2f5482a9da8538d7eb2091fae2889816e6b3d913c7c841241c80b6ae60fd1",
+  "weights": "turtle.pt",
+  "role": "Optional USB-background fine-tune",
+  "validation_role": "50 photo model-selection set, not independent field validation"
+}

@@ -1,0 +1,4 @@
+# Isolated from the Python 3.14 training environment; tested with Python 3.12.13.
+depthai==3.11.0
+numpy==2.5.4
+opencv-python==5.0.0.93

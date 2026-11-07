@@ -1,0 +1,2 @@
+# Optional HEIC metadata/preview import; separate from training and camera environments.
+pillow-heif==1.8.1

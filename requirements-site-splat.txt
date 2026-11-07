@@ -1,0 +1,3 @@
+# Add to the existing training/Metal environment, without replacing its torch build.
+pycolmap==4.2.1
+metalsplat @ git+https://github.com/tchauffi/metalsplat.git@84e8c3a433f71c107e9387d3f72a765436c11f6e

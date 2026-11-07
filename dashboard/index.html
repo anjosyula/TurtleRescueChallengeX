@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TurtleHero · Field monitor</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header><a class="brand" href="/" aria-label="TurtleHero home"><svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="19" cy="21" rx="12" ry="10"/><circle cx="34" cy="19" r="4"/><path d="M12 13 9 8m17 5 2-5M12 29l-3 5m17-5 3 5M7 22l-4 2"/><path class="shell" d="m19 14 6 4v6l-6 4-6-4v-6z"/></svg>TurtleHero</a><span class="header-label">Field monitor</span><span id="connection" class="connection">Connecting</span></header>
+<main>
+<div class="intro"><div><p class="eyebrow">CONSTRUCTION SITE MONITORING</p><h1>A closer watch on the ground.</h1><p class="subtitle">Camera detections, shared directly between field stations.</p></div><div class="share"><span>Open this dashboard on another computer</span><div><input id="address" readonly aria-label="Dashboard network address"><button id="copy" class="light">Copy link</button></div><small>Connect both computers to the same network.</small></div></div>
+<div class="metrics"><div><span>Stations online</span><strong id="online">—</strong></div><div><span>Possible turtles in view</span><strong id="in-view">—</strong></div><div><span>Recent sightings</span><strong id="sightings">—</strong></div><div><span>Selected station processing</span><strong id="latency">—</strong></div></div>
+<section class="monitor">
+<div class="video-column"><div class="section-heading"><h2>Camera view</h2><select id="station" aria-label="Choose camera station"></select></div>
+<div class="video"><img id="feed" alt="Annotated frame from the selected TurtleHero station" hidden><div id="placeholder" class="placeholder"><span class="camera-symbol">◎</span><h3 id="empty-title">Connecting to the station</h3><p id="empty-message">The camera feed will appear here.</p></div><div id="feed-status" class="feed-status">Connecting</div><div id="feed-bottom" class="feed-bottom"><span id="origin">—</span><span id="frame-age">—</span></div></div>
+<div class="video-note"><span id="source-note">Waiting for a frame</span><span>Review possible turtle detections before acting.</span></div>
+</div>
+<aside><div class="section-heading"><h2>Recent sightings</h2><span id="event-count" class="muted">0</span></div><div id="events" class="events"><p class="empty-events">Sightings will appear here when a station detects a possible turtle.</p></div></aside>
+</section>
+<section class="settings">
+<div><div class="section-heading"><h2>This station</h2><span id="local-name" class="muted"></span></div>
+<div class="control-row"><label for="source">Camera source</label><select id="source"><option value="oak">Live OAK camera</option><option value="replay">Saved OAK footage</option><option value="none">Receive from peers only</option></select></div>
+<div class="control-row"><label for="confidence">Detection threshold <output id="confidence-value">63%</output></label><input type="range" id="confidence" min="1" max="99" value="63"></div>
+<p id="camera-status" class="status-text"></p><p class="muted small">RT-DETR-L runs on the camera laptop. Each sighting groups consecutive positive frames.</p>
+</div>
+<div><div class="section-heading"><h2>Peer connections</h2><span class="muted">Direct station-to-station</span></div><form id="peer-form"><label for="peer-url">Another TurtleHero station’s address</label><div class="peer-entry"><input id="peer-url" placeholder="http://192.168.1.20:8765" required autocomplete="off"><button type="submit">Connect</button></div></form><p id="peer-feedback" role="status" class="status-text">A browser on another computer can use the link above. Add a peer when that computer also runs TurtleHero.</p><ul id="peers"></ul></div>
+</section>
+<footer><span>TurtleHero</span><span id="footer-state">Local network</span></footer>
+<p id="toast" role="status" class="toast" hidden></p>
+</main>
+</body></html>

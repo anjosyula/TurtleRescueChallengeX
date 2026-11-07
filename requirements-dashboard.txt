@@ -1,0 +1,8 @@
+# Python 3.12 recommended. Use prebuilt wheels; do not build DepthAI from source.
+ultralytics==8.4.157
+torch==2.14.0
+torchvision==0.29.0
+numpy==2.5.3
+opencv-python==5.0.0.93
+Pillow==12.3.0
+depthai==3.11.0

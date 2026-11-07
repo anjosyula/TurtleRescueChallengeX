@@ -1,0 +1,35 @@
+{
+  "reviewed_date": "2026-10-26",
+  "complete_anything_lidar": {
+    "url": "https://research.nvidia.com/labs/dvl/projects/complete-anything-lidar/",
+    "paper": "https://arxiv.org/abs/2504.12264",
+    "verified": "CAL infers completed objects from a single LiDAR scan at inference. Its training-label engine uses SAM2 video masks, calibrated camera/LiDAR sequences, temporal aggregation and CLIP features.",
+    "project_assessment": "Useful design for collecting partial turtle observations and tracking instances. An OAK stereo point cloud is a different sensor/domain; turtle completion and detector benefits are unproven. Inferred occupancy cannot replace measured depth or establish absence of turtles.",
+    "availability": "No released code/checkpoint link found on the reviewed official project page; not installed or downloaded.",
+    "recommended_scope": "Future research branch: segmented multi-view object reconstruction, with observed/inferred masks and real validation. Current detector keeps measured depth validity unchanged."
+  },
+  "rgb_depth_or_experiment": {
+    "status": "Implemented and tested in user-authorized 2026-10-26 pilot; see output/dual-detector-20261026/summary.json",
+    "rule": "rgb_hit OR (usable_measured_depth AND depth_hit)",
+    "benefit": "Union can recover unique misses at fixed branch thresholds",
+    "cost": "Union also passes false alarms from either branch; error independence cannot be assumed",
+    "requirements": "Train a separate depth/validity model on reviewed real pairs and backgrounds; calibrate branch thresholds, retain unavailable-depth status and box/branch provenance",
+    "comparison": "RGB only, depth only, OR, current feature fusion; same encounter-held-out data; compare recall at matched false alerts per minute plus latency",
+    "result": "Geometry-only detector trained on 192 simulated scenes for 10 epochs. OR added zero alert frames over RGB on 159 unreviewed OAK frames; real benefit not established."
+  },
+  "rt_detr": {
+    "url": "https://docs.nvidia.com/tao/tao-toolkit/latest/text/cv_finetuning/pytorch/object_detection/rt_detr.html",
+    "paper": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhao_DETRs_Beat_YOLOs_on_Real-time_Object_Detection_CVPR_2024_paper.pdf",
+    "verified": "TAO supports training, evaluation, inference, export and distillation with COCO JSON labels. Example uses feature strides 8,16,32 and a ResNet-50 backbone; other backbones are configurable.",
+    "assessment": "Reasonable RGB challenger, not a ready depth detector. COCO comparisons against older YOLO models do not establish superiority over this project's YOLO26-P2; original paper notes small-object limitations. Validate on independent turtle encounters and intended hardware.",
+    "status": "Official Ultralytics RT-DETR-L weights downloaded and fine-tuned locally for 10 epochs; NVIDIA TAO runtime was not run.",
+    "pilot_result": "Common existing validation AP50-95 0.6722 vs YOLO26-P2 0.5512; both 44/51 TP with 9 vs 22 FP at selected thresholds. Different training budgets and no independent field test."
+  },
+  "ngc_transfusion": {
+    "url": "https://catalog.ngc.nvidia.com/orgs/nvidia/tao/models/transfusion/-",
+    "verified": "Despite the catalog name Transfusion, its v1.0 model card describes BEVFusion and a people detector trained on synthetic indoor camera/LiDAR data. Inputs include RGB, XYZ plus LiDAR intensity, and calibration; output is 3D boxes.",
+    "project_assessment": "Not a turtle model or splat reconstructor. Adapting it needs turtle 3D annotations, sensor/domain adaptation and evaluation. OAK raw stereo confidence is not LiDAR intensity. BEV/voxel fusion is a separate research architecture from the project's current image-plane RGB-depth detector.",
+    "availability": "Catalog model available under its stated EULA; not downloaded or run.",
+    "recommended_scope": "Defer until simpler fused detector has real labeled RGB-depth data and measured results."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "reviewed_date": "2026-10-26",
+  "retrieval": "Luxonis MCP search_docs and get_doc_page",
+  "sources": [
+    "https://docs.luxonis.com/software-v3/depthai/depthai-components/nodes/stereo_depth",
+    "https://docs.luxonis.com/software-v3/depthai/depthai-components/host_nodes/pointcloud",
+    "https://docs.luxonis.com/software-v3/depthai/depthai-components/nodes/spatial_location_calculator",
+    "https://docs.luxonis.com/software-v3/depthai/depthai-components/messages/pointcloud_data"
+  ],
+  "conclusions": {
+    "metric_scale": "Calibrated stereo supplies metric camera-axis depth. The recorder explicitly uses calibrated translations and stores meters; zero depth remains unknown.",
+    "intrinsics": "Per-frame intrinsics describe ray directions and pixel scale, but intrinsics alone cannot resolve absolute scale from RGB.",
+    "backprojection": "X=(u-cx)*Z/fx, Y=(v-cy)*Z/fy, Z=saved depth_m. Coordinates use the undistorted aligned RGB camera frame.",
+    "existing_oak": "output/site-splat-20261026/oak-snapshot already has metric Gaussian means from saved depth. Rendered new-view depth is inferred geometry, not another sensor measurement.",
+    "rgb_reconstruction": "Proposed extension, not implemented: identify corresponding static points in SfM and synchronized OAK data, reject invalid/edge/outlier depth, robustly estimate meters-per-reconstruction-unit, and verify scale across views and a measured reference. Scale both point positions and camera translations consistently; Gaussian sizes scale too.",
+    "old_site": "The phone-only Arrowbrook reconstruction has no corresponding recorded OAK observations and remains arbitrary-scale. OAK hardware elsewhere cannot retrospectively scale it without shared landmarks or another measured reference.",
+    "turtle": "Depth helps estimate visible-shell extent but does not reveal hidden anatomy. Use masks and valid interior depth; bounding boxes may contain background.",
+    "uncertainty": "Metric units do not establish metrological accuracy. Luxonis published depth accuracy uses controlled textured targets and is not a guarantee for grass, shell edges, motion or distant targets.",
+    "point_cloud_bounds": "PointCloudData exposes min/max axis-aligned bounds in configured units. Object dimensions require selecting object points first; whole-scene bounds are not shell dimensions. Camera-axis extents depend on object pose and visible support."
+  },
+  "current_recording_sample": {
+    "session": "20261016T205810_f6a2ab4a",
+    "sample": "000050",
+    "units": "meters",
+    "depth_kind": "camera_axis_z",
+    "valid_fraction": 0.6279158528645833
+  },
+  "sensor_changes": false
+}
